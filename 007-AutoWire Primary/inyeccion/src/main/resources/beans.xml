@@ -9,6 +9,7 @@
         <property name= "mensaje" value="Hola alumnos de openwebinars"></property>
     </bean>
 
+	<!--como es primary, será el bean elegido por defecto-->
     <bean id="EnglishSaludator" class="com.example.inyeccion.Saludator" primary="true">
     <!--bean id="saludator" class="com.example.inyeccion.Saludator" autowire-candidate="false"-->
         <property name= "mensaje" value="Hello OpenWebinars's students"></property>

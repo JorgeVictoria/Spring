@@ -11,7 +11,7 @@ public class InyeccionApplication {
 	public static void main(String[] args) {
 		
 		//variables locales
-		Saludator saludador = null;
+		//Saludator saludador = null;
 		EmailService emailService = null;
 
 		//inicio
@@ -23,9 +23,9 @@ public class InyeccionApplication {
 		//acceso a los beans
 
 		//creamos el bean con el mensaje de saludo. En este caso como no lo vamos a usar, no seria necesario
-		saludador = (Saludator) appContext.getBean("saludator");
+		//saludador = (Saludator) appContext.getBean("saludator");
 
-		//creamos el bean para el correo
+		//creamos el bean para el correo. El bean del saludador se crea desde el xml
 		emailService = (EmailService) appContext.getBean("emailService");
 
 		//mandamos el correo

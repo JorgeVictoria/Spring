@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+      
+    <!--como emailService tiene un objeto de tipo Saludator, lo buscará automaticamente-->  
+    <bean id="emailService" class="com.example.demo.EmailService" autowire="byType">
+    	<!--si queremos hacer referencia a un bean con el autowire en false-->
+    	<!--property name="saludator" ref="saludator"></property-->
+    </bean>
+
+    <!--bean id="saludator" class="com.example.demo.Saludator">
+        <property name= "mensaje" value="Hola alumnos de openwebinars"></property>
+    </bean>-->
+    
+    <!-- si desmarcamos el autowire en el bean referenciado, dará problemas-->
+     <!--bean id="saludator" class="com.example.demo.Saludator" autowire-candidate="false">
+        <property name= "mensaje" value="Hola alumnos de openwebinars"></property>
+    </bean-->
+    
+     <!-- se puede usar el autowired a true-->
+     <bean id="saludator" class="com.example.demo.Saludator" autowire-candidate="true">
+        <property name= "mensaje" value="Hola alumnos de openwebinars"></property>
+    </bean>
+
+</beans>

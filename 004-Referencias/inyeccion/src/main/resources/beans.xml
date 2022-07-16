@@ -8,6 +8,7 @@
         <property name= "mensaje" value="Hola alumnos de openwebinars"></property>
     </bean>
 
+<!--usamos el setter de la clase para inyectar la referencia a la otra clase-->
     <bean id="emailService" class="com.example.inyeccion.EmailService">
         <property name= "saludator" ref="saludator"></property>
     </bean>

@@ -10,7 +10,7 @@ public class InyeccionApplication {
 
 	public static void main(String[] args) {
 		
-		//variables locales
+		//variables locales. Usamos la interfaz
 		IEmailService emailService = null;
 
 		//inicio
