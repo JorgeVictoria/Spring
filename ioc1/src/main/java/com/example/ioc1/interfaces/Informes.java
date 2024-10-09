@@ -1,8 +1,6 @@
 package com.example.ioc1.interfaces;
 
-public interface Empleados {
-
-    String getTareas();
+public interface Informes {
 
     String getInforme();
 

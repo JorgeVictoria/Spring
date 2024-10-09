@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="miEmpleado" class="com.example.ioc1.models.DirectorEmpleado">
+    <context:property-placeholder location="classpath:datosEmpresa.properties"/>
 
+    <bean id="miInforme" class="com.example.ioc1.models.Informe"/>
+
+    <!--Se ha creado un objeto de tipo informe y se inyecta en el constructor -->
+    <bean id="miEmpleado" class="com.example.ioc1.models.JefeEmpleado">
+        <constructor-arg ref="miInforme"/>
     </bean>
+
+    <!--Se ha creado un objeto de tipo informe y se inyecta en el setter -->
+    <!--También se añaden valores al resto de campos del objeto-->
+    <!--con scope decimos si queremos que use el patrón singleton(por defecto) o prototype-->
+    <bean id="miSecretario" class="com.example.ioc1.models.SecretarioEmpleado" scope="prototype">
+        <property name="informe" ref="miInforme" />
+        <property name="email" value="secretario@acme.com" />
+        <property name="nombreEmpresa" value="Acme" />
+    </bean>
+
+    <!--Se ha creado un objeto de tipo informe y se inyecta en el setter -->
+    <!--También se añaden valores al resto de campos del objeto, pero desde un fichero externo-->
+    <bean id="miDirector" class="com.example.ioc1.models.DirectorEmpleado">
+        <property name="informe" ref="miInforme" />
+        <property name="email" value="${email}" />
+        <property name="nombreEmpresa" value="${nombreEmpresa}" />
+    </bean>
+
 </beans>
