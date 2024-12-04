@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+<!-- fichero properties donde tenemos datos -->
+<context:property-placeholder location="classpath:datosEmpresa.properties" />
+
+
+    <!-- INVERSION DE CONTROL -->
+    <!-- Bean básico. Solo hay que modificar la clase que queremos utilizar -->
+    <!-- bean id="miEmpleado" class="com.jovian.ioc01.models.Director"/ -->
+
+    <!-- INYECCIÓN DE DEPENDENCIAS -->
+    <!-- Creación de la dependencia -->
+    <bean id="miInforme" class="com.jovian.ioc01.models.Informe"/>
+
+    <!-- Inyección de dependencia mediante constructor -->
+    <bean id="miJefe" class="com.jovian.ioc01.models.Jefe">
+        <constructor-arg ref="miInforme"/>
+    </bean>
+
+    <!-- Aquí también probamos los métodos init y destroy -->
+    <bean id="miDirector" class="com.jovian.ioc01.models.Director" init-method="metodoInicial" destroy-method="metodoFinal">
+        <constructor-arg ref="miInforme"/>
+        <!-- podemos pasar valores del fichero datosEmpresa -->
+        <property name="nombreEmpresa" value="${email}"/>
+        <property name="email" value="${nombreEmpresa}"/>
+
+    </bean>
+
+    <!-- Inyección de dependencia mediante setter -->
+    <bean id="miSecretario" class="com.jovian.ioc01.models.Secretario" scope="prototype">
+        <!-- podemos pasar valores por referencia -->
+        <property name="informe" ref="miInforme"/>
+        <!-- podemos pasar valores por valor -->
+        <property name="nombreEmpresa" value="JOVIAN S.A."/>
+        <property name="email" value="secretarios@email.com"/>
+    </bean>
+</beans>
